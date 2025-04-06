@@ -2,7 +2,7 @@
 
 This repository contains a template for a Telegram bot built with Aiogram 3.11.0. The bot features a simple structure for handling updates and tasks.
 
-**Note:** This template does not include logging or storage. For production use, consider adding logging and/or storage solutions and using environment variables for configuration.
+**Note:** This template does not include logging. For production use, consider adding logging.
 
 ## Table of Contents
 - [Structure](#structure)
