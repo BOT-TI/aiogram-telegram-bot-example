@@ -10,6 +10,7 @@ This repository contains a template for a Telegram bot built with Aiogram 3.11.0
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Running the Bot](#running-the-bot)
+- [Running tests](#running-tests)
 
 ## Structure
 
@@ -18,29 +19,43 @@ Overview of the structure:
 ```plaintext
 src/
 │
-├── utils/
-│   ├── bot.py           
-│   ├── config_loader.py
-│   ├── dispatcher.py   
-│   └── states.py        
+├── db/
+│   ├── tables/
+│   │   ├── users.py
+│   │   └── __init__.py
 │
 ├── handlers/
 │   ├── start_menu/
 │   │   ├── callbacks.py
-│   │   ├── keyboard.py 
+│   │   ├── keyboard.py
 │   │   └── messages.py
-│   └── task/
-│       ├── callbacks.py
-│       └── keyboard.py 
+│   ├── task/
+│   │   ├── callbacks.py
+│   │   ├── keyboard.py
+│   │   └── __init__.py
+│   └── __init__.py
 │
 ├── routers/
-│   └── start.py         
+│   ├── start.py
+│   └── __init__.py
 │
-├── config.json          
-├── main.py              
-├── readme.md            
-└── requirements.txt     
-└── .gitignore           
+├── utils/
+│   ├── bot.py
+│   ├── dispatcher.py
+│   ├── states.py
+│   └── __init__.py
+│
+├── tests/
+│   └── tests.py
+│
+├── .github/workflows/
+│   └── ci.yml
+│
+├── .env
+├── .gitignore
+├── main.py
+├── readme.md
+└── requirements.txt
 ```
 
 ### Prerequisites
@@ -84,14 +99,10 @@ src/
 
 1. **Set up your bot token**:
 
-    - Open the `config.json` file and replace `"YOUR_BOT_TOKEN_HERE"` with your actual bot token:
+    - Create a new .env file in the source folder and add bot token:
 
-      ```json
-      {
-          "bot": {
-              "token": "YOUR_BOT_TOKEN_HERE"
-          }
-      }
+      ```plaintext
+      BOT_TOKEN = token_here
       ```
 
 ### Running the Bot
@@ -99,5 +110,13 @@ src/
 To start the bot, use the following command:
 
 ```bash
-python3 main.py
+python main.py
+```
+
+## Running tests
+
+To run tests, use the following command:
+
+```bash
+pytest ./tests/tests.py
 ```

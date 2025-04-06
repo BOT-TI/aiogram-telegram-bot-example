@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, Message
 
-async def start_keyboard(message: Message = None, callback: CallbackQuery = None):
+async def start_keyboard(message: Message = None, callback: CallbackQuery = None) -> None:
     # If a message object is provided
     if message:
         username = message.from_user.username
@@ -16,7 +16,8 @@ async def start_keyboard(message: Message = None, callback: CallbackQuery = None
     # Keyboard buttons
     buttons = [
         [InlineKeyboardButton(text='Click me', callback_data='CLICK')],
-        [InlineKeyboardButton(text='Simple task', callback_data='TASK')]
+        [InlineKeyboardButton(text='Simple task', callback_data='TASK')],
+        [InlineKeyboardButton(text='Check database', callback_data='DB')]
     ]
     # Reply markup with the defined buttons
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
@@ -30,7 +31,7 @@ async def start_keyboard(message: Message = None, callback: CallbackQuery = None
         
     elif callback:
         # If a callback query object is provided, edit the existing message with the specified text and keyboard
-        await callback.message.edit_text(
+        await callback.message.answer(
             text=text,  # The updated text content of the message
             reply_markup=keyboard  # The updated reply markup (keyboard) to attach to the message
         )

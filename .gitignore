@@ -1,5 +1,5 @@
-/venv
-/src/handlers/start_menu/__pycache__
-/src/handlers/task/__pycache__
-/src/routers/__pycache__
-/src/utils/__pycache__
+/*venv
+**/__pycache__
+.pytest_cache
+.env
+**/database.db

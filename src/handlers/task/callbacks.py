@@ -5,7 +5,7 @@ from src.utils.states import ParentStates
 from src.handlers.start_menu.keyboard import start_keyboard
 
 async def handle_task_callback(callback: CallbackQuery, state: FSMContext):
-    # Check if the callback data is 'STOP'. If it is, call the handle_stop_task function.
+    # Check if the callback data is 'STOP'.
     if callback.data == 'STOP':
         await handle_stop_task(callback, state)
 
@@ -19,7 +19,7 @@ async def handle_stop_task(callback: CallbackQuery, state: FSMContext):
     # Iterate over the pending tasks
     for task in tasks:
         # Check if the task's name matches 'example_task'.
-        if task.get_name() == 'example_task':  # Task created in /src/handlers/start_menu/callbacks.py, line 49 | If there is multiple tasks running with the same name, cancels all of them.
+        if task.get_name().lower() == 'example_task':  # Task created in /src/handlers/start_menu/callbacks.py, line 49 | If there is multiple tasks running with the same name, this will cancel all of them.
             task.cancel()  # Cancel the task
     
     # Reset the state to 'start' after canceling the task

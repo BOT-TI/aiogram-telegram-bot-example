@@ -14,15 +14,15 @@ start_router = Router()
 # When user sends /start command, this function is triggered
 # The state parameter is used to manage the FSM for the user session
 @start_router.message(CommandStart()) # Decorator for the router
-async def start(message: Message, state: FSMContext):
+async def start(message: Message, state: FSMContext) -> None:
     await handle_start(message, state) # -> /src/handlers/start_menu/messages.py
 
 # Handles callback queries when the user is in the `ParentStates.start`
 @start_router.callback_query(ParentStates.start)
-async def start_menu_callbacks(callback: CallbackQuery, state: FSMContext):
+async def start_menu_callbacks(callback: CallbackQuery, state: FSMContext) -> None:
     await handle_start_menu_callbacks(callback, state) # -> /src/handlers/start_menu/callbacks.py
 
 # Handles callback queries when the user is in the `ChildStates.task`
 @start_router.callback_query(ChildStates.task)
-async def task_callbacks(callback: CallbackQuery, state: FSMContext):
+async def task_callbacks(callback: CallbackQuery, state: FSMContext) -> None:
     await handle_task_callback(callback, state) # -> /src/handlers/task/callbacks.py
